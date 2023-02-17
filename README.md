@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/Sh-Seam/seam/blob/main/file/pic.png"></p>
 
-/*<p align="center">
+<!--<p align="center">
     <a href="https://twitter.com/thewhiteh4t">
       <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
     </a>
@@ -31,7 +31,7 @@
   <a href="https://github.com/thewhiteh4t/seeker#demo">
     <img src="https://dabuttonfactory.com/button.png?t=DEMO&f=Open+Sans&ts=15&tc=000&hp=25&vp=10&c=5&bgt=unicolored&bgc=00e2ff">
   </a>
-</p> */
+</p>  -->
 
 
 
