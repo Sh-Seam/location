@@ -1,6 +1,6 @@
-<p align="center"><img src="https://i.imgur.com/DIpuNTI.jpg"></p>
+<p align="center"><img src="https://github.com/Sh-Seam/seam/blob/main/file/pic.png"></p>
 
-<p align="center">
+/*<p align="center">
     <a href="https://twitter.com/thewhiteh4t">
       <img src="https://img.shields.io/badge/-TWITTER-black?logo=twitter&style=for-the-badge">
     </a>
@@ -31,9 +31,9 @@
   <a href="https://github.com/thewhiteh4t/seeker#demo">
     <img src="https://dabuttonfactory.com/button.png?t=DEMO&f=Open+Sans&ts=15&tc=000&hp=25&vp=10&c=5&bgt=unicolored&bgc=00e2ff">
   </a>
-</p>
+</p> */
 
-Concept behind Seeker is simple, just like we host phishing pages to get credentials why not host a fake page that requests your location like many popular location based websites. Read more on <a href="https://thewhiteh4t.github.io"> thewhiteh4t's Blog </a>.Seeker Hosts a fake website which asks for Location Permission and if the target allows it, we can get :
+
 
 * Longitude
 * Latitude
@@ -188,10 +188,3 @@ ssh -R 80:localhost:8080 nokey@localhost.run
 ```
 as an alterntive to ngrok
 
-## Demo
-
-**YouTube**
-
-<a href="https://youtu.be/Q91cTFwIvLc">
-  <img src="https://i3.ytimg.com/vi/Q91cTFwIvLc/maxresdefault.jpg">
-</a>
